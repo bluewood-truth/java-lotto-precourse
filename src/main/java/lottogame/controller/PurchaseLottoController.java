@@ -17,6 +17,7 @@ public class PurchaseLottoController {
     }
     
     private static void tryToPurchaseLotto() {
+        OutputView.requestInputMoney();
         int inputMoney = ParsingUtils.stringToInteger(InputView.getInput());
         int countOfLottoToPurchase = getCountOfLottoToPurchase(inputMoney);
     }
