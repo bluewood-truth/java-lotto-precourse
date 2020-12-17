@@ -1,7 +1,6 @@
 package lottogame.view;
 
 import java.util.List;
-
 import lottogame.domain.Lotto;
 import lottogame.domain.LottoGame;
 import lottogame.domain.PurchasedLotto;

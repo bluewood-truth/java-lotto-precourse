@@ -3,7 +3,6 @@ package lottogame.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import lottogame.domain.Lotto;
 import lottogame.exceptions.CannotParseToIntegerException;
 import lottogame.exceptions.InvalidLottoNumberLengthException;
