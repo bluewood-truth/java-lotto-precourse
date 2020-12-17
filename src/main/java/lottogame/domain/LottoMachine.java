@@ -7,8 +7,6 @@ import java.util.List;
 import lottogame.utils.RandomUtils;
 
 public class LottoMachine {
-    private static final int LOTTO_NUMBER_MINIMUM = 1;
-    private static final int LOTTO_NUMBER_MAXIMUM = 45;
     private static final int LOTTO_NUMBER_LENGTH = 6;
 
     private static final List<Integer> machineNumbers = new ArrayList<>();
@@ -40,7 +38,7 @@ public class LottoMachine {
 
     private static void resetMachineNumbers() {
         machineNumbers.clear();
-        for (int i = LOTTO_NUMBER_MINIMUM; i <= LOTTO_NUMBER_MAXIMUM; i++) {
+        for (int i = Lotto.NUMBER_MINIMUM; i <= Lotto.NUMBER_MAXIMUM; i++) {
             machineNumbers.add(i);
         }
     }

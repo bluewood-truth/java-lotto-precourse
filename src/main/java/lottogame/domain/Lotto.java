@@ -8,10 +8,13 @@ import java.util.List;
  */
 public class Lotto {
     public static final int PRICE = 1000;
+    public static final int NUMBER_MINIMUM = 1;
+    public static final int NUMBER_MAXIMUM = 45;
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        // TODO: numbers에 대한 예외처리
         this.numbers = numbers;
     }
 
