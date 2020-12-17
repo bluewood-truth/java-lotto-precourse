@@ -22,12 +22,20 @@ public class PurchaseLottoController {
     private static void tryToPurchaseLotto() {
         OutputView.requestInputMoney();
         int inputMoney = ParsingUtils.stringToInteger(InputView.getInput());
-        int countOfLottoToPurchase = getCountOfLottoToPurchase(inputMoney);
-        OutputView.printPurchasedLottoCount(countOfLottoToPurchase);
-        
-        PurchasedLotto purchasedLotto = IssueLotto(countOfLottoToPurchase);
+        int purchasedLottoCount = getPurchasedLottoCount(inputMoney);
+        OutputView.printPurchasedLottoCount(purchasedLottoCount);
+
+        PurchasedLotto purchasedLotto = IssueLotto(purchasedLottoCount);
         OutputView.printPurchasedLotto(purchasedLotto);
         LottoGame.setPurchasedLotto(purchasedLotto);
+    }
+
+    private static int getPurchasedLottoCount(int inputMoney) {
+        if (inputMoney < Lotto.PRICE) {
+            throw new NotEnoughMoneyException(inputMoney, Lotto.PRICE);
+        }
+
+        return inputMoney / Lotto.PRICE;
     }
 
     private static PurchasedLotto IssueLotto(int purchasedLottoCount) {
@@ -38,13 +46,5 @@ public class PurchaseLottoController {
         }
 
         return purchasedLotto;
-    }
-
-    private static int getCountOfLottoToPurchase(int inputMoney) {
-        if (inputMoney < Lotto.PRICE) {
-            throw new NotEnoughMoneyException(inputMoney, Lotto.PRICE);
-        }
-        
-        return inputMoney / Lotto.PRICE;
     }
 }
