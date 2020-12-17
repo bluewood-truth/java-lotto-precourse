@@ -18,7 +18,7 @@ public class OutputView {
 
     public static final String WINNING_RESULT_TITLE = "당첨 통계\n--------";
     public static final String WINNING_RESULT_FORMAT = "%s - %d개%n";
-    public static final String YIELD_FORMAT = "총 수익률은 %f%%입니다.";
+    public static final String YIELD_FORMAT = "총 수익률은 %.00f%%입니다.";
 
     public static void requestInputMoney() { 
         System.out.println(REQUEST_INPUT_MONEY);
@@ -52,6 +52,7 @@ public class OutputView {
     }
 
     public static void printWinningResult() {
+        printEmptyLine();
         System.out.println(WINNING_RESULT_TITLE);
         Rank[] ranks = Rank.values();
         for (int i = ranks.length - 1; i >= 0; i--) {
@@ -74,7 +75,6 @@ public class OutputView {
     public static void printError(Exception e) {
         printEmptyLine();
         System.out.printf(ERROR_FORMAT, e.getMessage());
-        printEmptyLine();
     }
 
     private static void printEmptyLine() {
