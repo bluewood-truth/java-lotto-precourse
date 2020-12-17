@@ -1,4 +1,4 @@
-package domain;
+package lottogame.domain;
 
 /**
  * 로또 등수를 의미하는 enum

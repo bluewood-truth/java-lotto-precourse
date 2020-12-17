@@ -1,4 +1,4 @@
-package domain;
+package lottogame.domain;
 
 /**
  * 당첨 번호를 담당하는 객체
