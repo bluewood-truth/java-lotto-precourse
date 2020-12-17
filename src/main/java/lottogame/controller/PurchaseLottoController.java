@@ -1,7 +1,6 @@
 package lottogame.controller;
 
 import lottogame.domain.Lotto;
-import lottogame.domain.LottoGame;
 import lottogame.domain.LottoMachine;
 import lottogame.domain.PurchasedLotto;
 import lottogame.exceptions.NotEnoughMoneyException;
@@ -10,16 +9,16 @@ import lottogame.view.InputView;
 import lottogame.view.OutputView;
 
 public class PurchaseLottoController {
-    public static void purchaseLotto() {
+    public static PurchasedLotto purchaseLotto() {
         try {
-            tryToPurchaseLotto();
+            return tryToPurchaseLotto();
         } catch (Exception e) {
             OutputView.printError(e);
-            purchaseLotto();       
+            return purchaseLotto();       
         }
     }
     
-    private static void tryToPurchaseLotto() {
+    private static PurchasedLotto tryToPurchaseLotto() {
         OutputView.requestInputMoney();
         int inputMoney = ParsingUtils.stringToInteger(InputView.getInput());
         int purchasedLottoCount = getPurchasedLottoCount(inputMoney);
@@ -27,7 +26,7 @@ public class PurchaseLottoController {
 
         PurchasedLotto purchasedLotto = IssueLotto(purchasedLottoCount);
         OutputView.printPurchasedLotto(purchasedLotto);
-        LottoGame.setPurchasedLotto(purchasedLotto);
+        return purchasedLotto;
     }
 
     private static int getPurchasedLottoCount(int inputMoney) {

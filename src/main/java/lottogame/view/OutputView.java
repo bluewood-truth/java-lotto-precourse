@@ -50,21 +50,23 @@ public class OutputView {
         System.out.println(REQUEST_BONUS_NUMBER);
     }
 
-    public static void printWinningResult() {
+    public static void printWinningResult(LottoGame lottoGame, float lottoYield) {
         printEmptyLine();
         System.out.println(WINNING_RESULT_TITLE);
         Rank[] ranks = Rank.values();
         for (int i = ranks.length - 1; i >= 0; i--) {
-            printWinningRank(ranks[i]);
+            printWinningRank(ranks[i], lottoGame.getWinningCount(ranks[i]));
         }
+
+        printLottoYield(lottoYield);
     }
 
-    private static void printWinningRank(Rank rank) {
+    private static void printWinningRank(Rank rank, int count) {
         if (rank == Rank.MISS) {
             return;
         }
 
-        System.out.printf(WINNING_RESULT_FORMAT, rank.toString(), LottoGame.getWinningCount(rank));
+        System.out.printf(WINNING_RESULT_FORMAT, rank.toString(), count);
     }
     
     public static void printLottoYield(float lottoYield) {

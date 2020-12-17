@@ -1,7 +1,5 @@
 package lottogame.controller;
 
-import java.util.List;
-
 import lottogame.domain.Lotto;
 import lottogame.domain.LottoGame;
 import lottogame.domain.Rank;
@@ -9,24 +7,18 @@ import lottogame.domain.WinningLotto;
 import lottogame.view.OutputView;
 
 public class LottoResultController {
-    public static void calculateWinning() {
-        List<Lotto> purchasedLotto = LottoGame.getPerchasedLottoList();
-        WinningLotto winningLotto = LottoGame.getWinningLotto();
-
-        for (Lotto lotto : purchasedLotto) {
-            addWinningValues(winningLotto.match(lotto));
+    public static void calculateResult(LottoGame lottoGame) {
+        WinningLotto winningLotto = lottoGame.getWinningLotto();
+        for (Lotto lotto : lottoGame.getPerchasedLottoList()) {
+            Rank rank = winningLotto.match(lotto);
+            lottoGame.addWinningCount(rank);
+            lottoGame.addWinningMoney(rank.getWinningMoney());
         }
 
-        OutputView.printWinningResult();
-        OutputView.printLottoYield(getLottoYieldPercentage());
+        OutputView.printWinningResult(lottoGame, getLottoYieldPercentage(lottoGame));
     }
 
-    private static void addWinningValues(Rank rank) {
-        LottoGame.addWinningCount(rank);
-        LottoGame.addWinningMoney(rank.getWinningMoney());
-    }
-
-    private static float getLottoYieldPercentage() {
-        return (float)(LottoGame.getWinningMoney() / LottoGame.getPerchasedMoney() * 100);
+    private static float getLottoYieldPercentage(LottoGame lottoGame) {
+        return (float)(lottoGame.getWinningMoney() / lottoGame.getPerchasedMoney() * 100);
     }
 }
