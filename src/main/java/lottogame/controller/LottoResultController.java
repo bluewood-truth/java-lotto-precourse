@@ -10,15 +10,6 @@ import lottogame.view.OutputView;
 
 public class LottoResultController {
     public static void calculateWinning() {
-        try {
-            tryToCalculateWinning();
-        } catch (Exception e) {
-            OutputView.printError(e);
-            calculateWinning();
-        }
-    }
-
-    public static void tryToCalculateWinning() {
         List<Lotto> purchasedLotto = LottoGame.getPerchasedLottoList();
         WinningLotto winningLotto = LottoGame.getWinningLotto();
 
@@ -27,10 +18,15 @@ public class LottoResultController {
         }
 
         OutputView.printWinningResult();
+        OutputView.printLottoYield(getLottoYieldPercentage());
     }
-    
+
     private static void addWinningValues(Rank rank) {
         LottoGame.addWinningCount(rank);
         LottoGame.addWinningMoney(rank.getWinningMoney());
+    }
+
+    private static float getLottoYieldPercentage() {
+        return (float)(LottoGame.getWinningMoney() / LottoGame.getPerchasedMoney() * 100);
     }
 }

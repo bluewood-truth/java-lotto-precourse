@@ -18,8 +18,9 @@ public class OutputView {
 
     public static final String WINNING_RESULT_TITLE = "당첨 통계\n--------";
     public static final String WINNING_RESULT_FORMAT = "%s - %d개%n";
+    public static final String YIELD_FORMAT = "총 수익률은 %f%%입니다.";
 
-    public static void requestInputMoney() {
+    public static void requestInputMoney() { 
         System.out.println(REQUEST_INPUT_MONEY);
     }
 
@@ -62,8 +63,12 @@ public class OutputView {
         if (rank == Rank.MISS) {
             return;
         }
-        
+
         System.out.printf(WINNING_RESULT_FORMAT, rank.toString(), LottoGame.getWinningCount(rank));
+    }
+    
+    public static void printLottoYield(float lottoYield) {
+        System.out.printf(YIELD_FORMAT, lottoYield);
     }
 
     public static void printError(Exception e) {

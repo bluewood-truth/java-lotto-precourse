@@ -45,7 +45,11 @@ public class LottoGame {
         winningMoney += money;
     }
 
-    public static int getWinningMoney(){
+    public static int getWinningMoney() {
         return winningMoney;
+    }
+    
+    public static int getPerchasedMoney() {
+        return getPerchasedLottoList().size() * Lotto.PRICE;
     }
 }
