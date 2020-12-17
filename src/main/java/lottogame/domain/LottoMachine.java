@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lottogame.exceptions.DoesNotExistNumberInMachineExcepition;
 import lottogame.utils.RandomUtils;
 
 public class LottoMachine {
@@ -30,11 +31,15 @@ public class LottoMachine {
         return machineNumbers.get(RandomUtils.nextInt(machineNumbers.size()));
     }
     
-    private static void removeNumberFromMachine(int number) {
+    public static void removeNumberFromMachine(int number) {
+        if (!machineNumbers.contains(number)) {
+            throw new DoesNotExistNumberInMachineExcepition(number);
+        }
+
         machineNumbers.removeIf(machineNumber -> machineNumber == number);
     }
 
-    private static void resetMachineNumbers() {
+    public static void resetMachineNumbers() {
         machineNumbers.clear();
         for (int i = Lotto.NUMBER_MINIMUM; i <= Lotto.NUMBER_MAXIMUM; i++) {
             machineNumbers.add(i);
