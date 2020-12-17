@@ -3,7 +3,10 @@ package lottogame.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lottogame.domain.Lotto;
 import lottogame.exceptions.CannotParseToIntegerException;
+import lottogame.exceptions.InvalidLottoNumberLengthException;
 
 public class ParsingUtils {
     private static final String SPLITER = ",";
@@ -22,9 +25,12 @@ public class ParsingUtils {
     }
 
     private static String[] split(String input) {
-        //TODO: split한 배열의 길이에 대한 예외처리
+        String[] splittedInput = input.split(SPLITER);
+        if (splittedInput.length != Lotto.NUMBER_LENGTH) {
+            throw new InvalidLottoNumberLengthException();
+        }
 
-        return input.split(SPLITER);
+        return splittedInput;
     }
     
     private static List<Integer> stringArrayToIntegerList(String[] array) {
