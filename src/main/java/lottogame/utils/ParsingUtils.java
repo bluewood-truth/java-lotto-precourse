@@ -1,8 +1,13 @@
 package lottogame.utils;
 
+import lottogame.exceptions.CannotParseToIntegerException;
+
 public class ParsingUtils {
     public static int stringToInteger(String input) {
-        // TODO: 입력값에 대한 예외처리
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new CannotParseToIntegerException(input);
+        }
     }
 }

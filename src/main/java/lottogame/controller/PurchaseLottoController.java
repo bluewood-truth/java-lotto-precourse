@@ -1,6 +1,7 @@
 package lottogame.controller;
 
 import lottogame.domain.Lotto;
+import lottogame.exceptions.NotEnoughMoneyException;
 import lottogame.utils.ParsingUtils;
 import lottogame.view.InputView;
 import lottogame.view.OutputView;
@@ -21,7 +22,10 @@ public class PurchaseLottoController {
     }
 
     private static int getCountOfLottoToPurchase(int inputMoney) {
-        // TODO: 입력 금액이 로또 가격보다 낮을 경우 예외처리
+        if (inputMoney < Lotto.PRICE) {
+            throw new NotEnoughMoneyException(inputMoney, Lotto.PRICE);
+        }
+        
         return inputMoney / Lotto.PRICE;
     }
 }
