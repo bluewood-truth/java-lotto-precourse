@@ -41,4 +41,12 @@ public class ParsingUtils {
 
         return integerList;
     }
+
+    public static int booleanToInt(boolean bool){
+        if (bool) {
+            return 1;
+        }
+
+        return 0;
+    }
 }

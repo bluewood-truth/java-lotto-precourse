@@ -1,5 +1,8 @@
 package lottogame.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 로또 등수를 의미하는 enum
  */
@@ -12,6 +15,8 @@ public enum Rank {
     MISS(0, 0);
 
     private static final int WINNING_MIN_COUNT = 3;
+    private static final String MESSAGE_FORMAT = "%d개 일치 (%d원)";
+    private static final String MESSAGE_FORMAT_FOR_SECOND = "%d개 일치, 보너스 볼 일치 (%d원)";
 
     private int countOfMatch;
     private int winningMoney;
@@ -49,6 +54,14 @@ public enum Rank {
 
     private boolean matchCount(int countOfMatch) {
         return this.countOfMatch == countOfMatch;
+    }
+
+    public String toString() {
+        if (this == Rank.SECOND) {
+            return String.format(MESSAGE_FORMAT_FOR_SECOND, countOfMatch, winningMoney);
+        }
+
+        return String.format(MESSAGE_FORMAT, countOfMatch, winningMoney);
     }
 }
 
