@@ -1,7 +1,10 @@
 package lottogame.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import lottogame.utils.RandomUtils;
 
 public class LottoMachine {
     private static final int LOTTO_NUMBER_MINIMUM = 1;
@@ -16,12 +19,23 @@ public class LottoMachine {
         for (int i = 0; i < LOTTO_NUMBER_LENGTH; i++) {
             lottoNumbers.add(getLottoNumber());
         }
+
+        Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
     
     private static int getLottoNumber() {
-        // TODO: 로또머신에서 무작위로 숫자를 뽑아 반환하는 로직 구현
-        return 0;
+        int number = getNumberFromMachine();
+        removeNumberFromMachine(number);
+        return number;
+    }
+
+    private static int getNumberFromMachine() {
+        return machineNumbers.get(RandomUtils.nextInt(machineNumbers.size()));
+    }
+    
+    private static void removeNumberFromMachine(int number) {
+        machineNumbers.removeIf(machineNumber -> machineNumber == number);
     }
 
     private static void resetMachineNumbers() {
